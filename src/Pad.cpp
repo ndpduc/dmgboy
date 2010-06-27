@@ -1,0 +1,127 @@
+/*
+ This file is part of gbpablog.
+ 
+ gbpablog is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ gbpablog is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with gbpablog.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "Pad.h"
+#include "GBException.h"
+#include <iostream>
+using namespace std;
+
+static int	kR = SDLK_RIGHT;
+static int	kL = SDLK_LEFT;
+static int	kU = SDLK_UP;
+static int	kD = SDLK_DOWN;
+static int	kA = SDLK_a;
+static int	kB = SDLK_s;
+static int	kSE = SDLK_q;
+static int	kST = SDLK_w;
+
+static BYTE joypad[8];
+
+int updateInput(int valueP1)
+{
+	if(!BIT5(valueP1))
+		return ((valueP1 & 0x30) |
+			(!joypad[jSTART] << 3) | (!joypad[jSELECT] << 2) | (!joypad[jB] << 1) | (!joypad[jA]));
+
+	if(!BIT4(valueP1))
+		return ((valueP1 & 0x30) |
+			(!joypad[jDOWN] << 3) | (!joypad[jUP] << 2) | (!joypad[jLEFT] << 1) | (!joypad[jRIGHT]));
+
+	//Desactivar los botones
+	return 0x3F;
+}
+
+//Si devuelve 1 debe producirse una petici—n de interrupci—n
+//En caso negativo devolver‡ 0
+int checkKey(int eventType, SDLKey key, int *valueP1)
+{
+	const char * keyName;
+
+	keyName = SDL_GetKeyName(key);
+	bool pressed = (eventType == SDL_KEYDOWN);
+
+	if (key == kR)
+		joypad[jRIGHT] = pressed;
+	else if (key == kL)
+		joypad[jLEFT] = pressed;
+	else if (key == kA)
+		joypad[jA] = pressed;
+	else if (key == kB)
+		joypad[jB] = pressed;
+	else if (key == kSE)
+		joypad[jSELECT] = pressed;
+	else if (key == kST)
+		joypad[jSTART] = pressed;
+	else if (key == kU)
+		joypad[jUP] = pressed;
+	else if (key == kD)
+		joypad[jDOWN] = pressed;
+
+	*valueP1 = updateInput(*valueP1);
+
+	if (eventType == SDL_KEYDOWN)
+	{
+		if(!BIT5(*valueP1))
+			if ((key == kA) || (key == kB) || (key == kSE) || (key == kST))
+				return 1;
+
+		if(!BIT4(*valueP1))
+			if ((key == kL) || (key == kR) || (key == kU) || (key == kD))
+				return 1;
+	}
+
+	return 0;
+}
+
+
+//Si devuelve 1 debe producirse una petici—n de interrupci—n
+//En caso negativo devolver‡ 0
+int onCheckKeyPad(int * valueP1)
+{
+	SDL_Event ev;
+
+	while( SDL_PollEvent( &ev ) )
+	{
+		switch(ev.type)
+		{
+			case SDL_QUIT:
+				throw GBException("Close window", Exit);
+				break;
+			case SDL_KEYDOWN:
+				if (ev.key.keysym.sym == SDLK_ESCAPE)
+				{
+					cout << "Press ESC another time to exit or another key to continue" << endl;
+					while(true)
+					{
+						SDL_WaitEvent(&ev);
+						if (ev.type == SDL_KEYDOWN)
+						{
+							if (ev.key.keysym.sym == SDLK_ESCAPE)
+								throw GBException("2 consec. times ESC", Exit);
+							else
+								return 0;
+						}
+					}
+				}
+				//!!No hay break. Cuando SDL_KEYDOWN tambiŽn SDL_KEYUP
+			case SDL_KEYUP:
+				return checkKey(ev.type, ev.key.keysym.sym, valueP1);
+				break;
+		}
+	}
+	return 0;
+}
