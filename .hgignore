@@ -1,0 +1,25 @@
+syntax: glob
+
+glob:.DS_Store
+build/mac/Xcode/gbpablog\.xcodeproj/xcuserdata/*
+build/mac/Xcode/gbpablog\.xcodeproj/project\.xcworkspace/xcuserdata/*
+build/mac/Xcode/gbpablog.xcodeproj/pablo.pbxuser
+build/mac/Xcode/gbpablog.xcodeproj/pablo.perspectivev3
+glob:*Xcode/build/*
+
+*/debug/*
+*/Debug/*
+*/release/*
+*/Release/*
+*.ncb
+*.user
+*.suo
+*.depend
+build/win32/vs2010/VS2010_vcredist_x86\.exe
+
+build/linux/CodeBlocks/gbpablog
+build/linux/CodeBlocks/gbpablog.layout
+
+glob:*.backup
+glob:*/log.txt
+build/installers/gbpablog*
