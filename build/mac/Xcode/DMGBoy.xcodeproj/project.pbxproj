@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E0E338B1883273D001C4F1A /* Debugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E33891883273D001C4F1A /* Debugger.cpp */; };
 		6E0F405E17DC78E90061C894 /* gb.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6E0F405717DC78B60061C894 /* gb.jpg */; };
 		6E1CEAC11719B1810009DD50 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E148F7314423EA10021740C /* CoreAudio.framework */; };
 		6E1CEAC21719B1810009DD50 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E148F7414423EA10021740C /* CoreServices.framework */; };
@@ -79,6 +80,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		6E0823A413C2429700C42CE0 /* RendererOGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererOGL.cpp; sourceTree = "<group>"; };
 		6E0823A513C2429700C42CE0 /* RendererOGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RendererOGL.h; sourceTree = "<group>"; };
+		6E0E33891883273D001C4F1A /* Debugger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Debugger.cpp; path = ../../../src/Debugger.cpp; sourceTree = "<group>"; };
+		6E0E338A1883273D001C4F1A /* Debugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Debugger.h; path = ../../../src/Debugger.h; sourceTree = "<group>"; };
 		6E0F405717DC78B60061C894 /* gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = gb.jpg; path = ../../../src/GUI/3D/gb.jpg; sourceTree = "<group>"; };
 		6E148F6214422F2D0021740C /* SoundPortaudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundPortaudio.cpp; path = ../../../src/SoundPortaudio.cpp; sourceTree = "<group>"; };
 		6E148F6314422F2D0021740C /* SoundPortaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundPortaudio.h; path = ../../../src/SoundPortaudio.h; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				6E23C71E11D7CD510043AF47 /* Cartridge.h */,
 				6E23C71F11D7CD510043AF47 /* CPU.cpp */,
 				6E23C72011D7CD510043AF47 /* CPU.h */,
+				6E0E33891883273D001C4F1A /* Debugger.cpp */,
+				6E0E338A1883273D001C4F1A /* Debugger.h */,
 				6E23C72111D7CD510043AF47 /* Def.h */,
 				6E23C72311D7CD510043AF47 /* GBException.cpp */,
 				6E23C72411D7CD510043AF47 /* GBException.h */,
@@ -432,6 +437,7 @@
 			files = (
 				6E4755671719977500602FE1 /* Basic_Gb_Apu.cpp in Sources */,
 				6E4755681719977500602FE1 /* Blip_Buffer.cpp in Sources */,
+				6E0E338B1883273D001C4F1A /* Debugger.cpp in Sources */,
 				6E4755691719977500602FE1 /* Gb_Apu.cpp in Sources */,
 				6E47556A1719977500602FE1 /* Gb_Oscs.cpp in Sources */,
 				6E47556B1719977500602FE1 /* Multi_Buffer.cpp in Sources */,
