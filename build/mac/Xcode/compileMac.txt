@@ -1,0 +1,1 @@
+Yo have to rename the file Config.xcconfig.bak to Config.xcconfig and change the path of the variables to the correct ones.
